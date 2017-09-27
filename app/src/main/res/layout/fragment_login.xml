@@ -119,7 +119,24 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Port" />
+
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button_lgin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fragment_login_button" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
 
     </LinearLayout>
 
