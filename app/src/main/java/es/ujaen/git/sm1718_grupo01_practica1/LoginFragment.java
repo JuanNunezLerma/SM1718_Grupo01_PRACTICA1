@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -59,7 +62,21 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false); //Es donde se crea la vista.
+        View fragment =  inflater.inflate(R.layout.fragment_login, container, false); //Es donde se crea la vista.
+
+        Button connect = (Button) fragment.findViewById(R.id.button_lgin);
+
+        final EditText name = (EditText) fragment.findViewById(R.id.editText_login_user);
+
+        connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                String nombre = name.getText().toString();
+                Toast.makeText(getContext(),nombre, Toast.LENGTH_LONG).show());
+            }
+        });
+
+        return fragment;
     }
 
 }
