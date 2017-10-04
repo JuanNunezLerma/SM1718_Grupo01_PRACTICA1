@@ -42,12 +42,14 @@
                 android:text="@string/fragment_login_user"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-            <TextView
-                android:id="@+id/textView_login_user"
+            <EditText
+                android:id="@+id/editText_login_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
 
         </LinearLayout>
 
@@ -117,13 +119,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:text="Port" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/button_lgin"
+            android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

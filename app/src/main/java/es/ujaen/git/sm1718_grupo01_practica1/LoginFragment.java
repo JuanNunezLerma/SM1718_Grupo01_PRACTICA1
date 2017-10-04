@@ -1,6 +1,7 @@
 package es.ujaen.git.sm1718_grupo01_practica1;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import static es.ujaen.git.sm1718_grupo01_practica1.ServiceActivity.PARAM_IP;
+import static es.ujaen.git.sm1718_grupo01_practica1.ServiceActivity.PARAM_PASS;
+import static es.ujaen.git.sm1718_grupo01_practica1.ServiceActivity.PARAM_PORT;
+import static es.ujaen.git.sm1718_grupo01_practica1.ServiceActivity.PARAM_USER;
 
 
 /**
@@ -64,15 +70,37 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragment =  inflater.inflate(R.layout.fragment_login, container, false); //Es donde se crea la vista.
 
-        Button connect = (Button) fragment.findViewById(R.id.button_lgin);
+        Button connect = (Button) fragment.findViewById(R.id.button_login);
 
-        final EditText name = (EditText) fragment.findViewById(R.id.editText_login_user);
+        final EditText user = (EditText) fragment.findViewById(R.id.editText_login_user);
+        final EditText pass = (EditText) fragment.findViewById(R.id.editText_login_password);
+        final EditText ip = (EditText) fragment.findViewById(R.id.editText_login_address);
+        final EditText port = (EditText) fragment.findViewById(R.id.editText_login_port);
 
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String nombre = name.getText().toString();
-                Toast.makeText(getContext(),nombre, Toast.LENGTH_LONG).show());
+                String s_user = user.getText().toString();
+                String s_pass = pass.getText().toString();
+                String s_ip = ip.getText().toString();
+                String s_port = port.getText().toString();
+
+                short port2;
+        try {
+            port2 = Short.parseShort(s_port);
+        }catch (java.lang.NumberFormatException ex){
+            port2=6000;
+        }
+                ConnectionUserData data = new ConnectionUserData (s_user, s_pass, s_ip, port2);
+
+                Toast.makeText(getContext(),"Hola "+s_user+" "+s_pass+" "+s_ip+" :"+s_port, Toast.LENGTH_LONG).show();
+
+                Intent nueva = new Intent (getActivity(),ServiceActivity.class);
+                nueva.putExtra(PARAM_USER, data.getUser());
+                nueva.putExtra(PARAM_PASS,data.getPass());
+                nueva.putExtra(PARAM_IP, data.getConnectionIP());
+                nueva.putExtra(PARAM_PORT, data.getConnectionPort());
+                startActivity(nueva);
             }
         });
 
